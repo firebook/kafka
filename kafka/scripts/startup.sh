@@ -1,6 +1,7 @@
 #!/bin/sh
 # startup zookeeper and kafka by supervisord
-supervisord -n
+/usr/share/zookeeper/bin/zkServer.sh start-foreground &
+$KAFKA_HOME/bin/start-kafka.sh &
 
 # Create topic iot-devices-topic
 echo "sleep 30 seconds, wait for zookeeper and kafka startup"
