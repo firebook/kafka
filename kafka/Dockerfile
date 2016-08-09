@@ -27,3 +27,4 @@ ADD supervisor/kafka.conf supervisor/zookeeper.conf supervisor/kafka-create-topi
 EXPOSE 2181 9092
 
 CMD ["supervisord", "-n"]
+CMD ["/usr/bin/create-kafka-topic.sh"]
