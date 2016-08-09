@@ -1,4 +1,7 @@
 #!/bin/sh
+# startup zookeeper and kafka by supervisord
+supervisord -n
+
 # Create topic iot-devices-topic
 echo "sleep 30 seconds, wait for zookeeper and kafka startup"
 /bin/sleep 30
