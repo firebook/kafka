@@ -18,6 +18,7 @@ RUN apt-get update && \
 
 ADD scripts/start-kafka.sh /usr/bin/start-kafka.sh
 ADD scripts/create-kafka-topic.sh /usr/bin/create-kafka-topic.sh
+RUN chmod +x /usr/bin/*kafka*.sh
 
 # Supervisor config
 ADD supervisor/kafka.conf supervisor/zookeeper.conf supervisor/kafka-create-topic.conf /etc/supervisor/conf.d/
