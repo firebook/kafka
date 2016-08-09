@@ -17,13 +17,13 @@ RUN apt-get update && \
     rm /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz
 
 ADD scripts/start-kafka.sh /usr/bin/start-kafka.sh
-ADD scripts/startup.sh /usr/bin/startup.sh
-RUN chmod +x /usr/bin/*.sh
+ADD scripts/create-kafka-topic.sh /usr/bin/create-kafka-topic.sh
+RUN chmod +x /usr/bin/*kafka*.sh
 
 # Supervisor config
-ADD supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
+ADD supervisor/kafka.conf supervisor/zookeeper.conf supervisor/kafka-create-topic.conf /etc/supervisor/conf.d/
 
 # 2181 is zookeeper, 9092 is kafka
 EXPOSE 2181 9092
 
-CMD ["/usr/bin/startup.sh"]
+CMD ["supervisord", "-n"]
