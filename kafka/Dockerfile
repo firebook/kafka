@@ -25,3 +25,4 @@ ADD supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
 EXPOSE 2181 9092
 
 CMD ["supervisord", "-n"]
+CMD ["$KAFKA_HOME/bin/kafka-topics.sh", "--create", "--zookeeper", "localhost:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "iot-devices-topic"]
