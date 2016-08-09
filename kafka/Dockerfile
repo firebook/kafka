@@ -19,11 +19,9 @@ RUN apt-get update && \
 ADD scripts/start-kafka.sh /usr/bin/start-kafka.sh
 
 # Supervisor config
-ADD supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
+ADD supervisor/kafka.conf supervisor/zookeeper.conf supervisor/kafka-create-topic.conf /etc/supervisor/conf.d/
 
 # 2181 is zookeeper, 9092 is kafka
 EXPOSE 2181 9092
 
 CMD ["supervisord", "-n"]
-CMD ["sleep", "30"]
-CMD ["echo $KAFKA_HOME/bin/kafka-topics.sh", "--create", "--zookeeper", "localhost:2181", "--replication-factor", "1", "--partitions", "1", "--topic", "iot-devices-topic"]
